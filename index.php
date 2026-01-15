@@ -18,8 +18,14 @@ if (isset($_POST["url"])) {
     }
 }
 
+//Redirect to the long URL
 if (isset($_GET["url"])) {
-    header("location: " . getURL($_GET["url"], true)[1]);;
+
+    if (getURL($_GET["url"])[0] != "non_existent_url") {
+        header("location: " . getURL($_GET["url"], true)[1]);;
+    } else {
+        header("location: index.php");
+    }
 }
 
 ?>

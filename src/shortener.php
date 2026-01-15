@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+fclose(fopen("src/data.txt", "c"));
+
 /**
  * Creates a record for a given URL
  *
@@ -21,9 +23,14 @@ function shortenURL(string $longURL): string {
  * @param string $urlid
  * @param bool $is_visiting
  * @return array|string[] The URL ID, the long URL, the time of creation, and the visit count
+ * @return string[] ["non_existent_url"]
  */
 function getURL(string $urlid, bool $is_visiting = false): array {
     $data = fopen("src/data.txt", "r+") or die("Unable to open file!");
+    if (filesize("src/data.txt") == 0) {
+        fclose($data);
+        return ["non_existent_url"];
+    }
     $text = fread($data, filesize("src/data.txt"));
     $lines = explode("\n", $text);
     for ($pos = 0; $pos < count($lines); $pos++) {
@@ -42,6 +49,17 @@ function getURL(string $urlid, bool $is_visiting = false): array {
     return ["non_existent_url"];
 }
 
+/**
+ * Updates a line in the data file
+ *
+ * @param $file
+ * @param int $line_number
+ * @param string $urlid
+ * @param string $url
+ * @param string $time
+ * @param string $visits
+ * @return void
+ */
 function updateLine($file, int $line_number, string $urlid, string $url, string $time, string $visits): void
 {
     fseek($file, 0);
