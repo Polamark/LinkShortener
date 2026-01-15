@@ -3,8 +3,11 @@
 require_once 'src/shortener.php';
 date_default_timezone_set("UTC");
 
+;
+
 $url_pattern = "/^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$/";
-$url_shortened_pattern = $pattern = '/^http:\/\/something\.test\/index\.php\?url=[a-zA-Z0-9]*$/';
+$url_shortened_pattern = $pattern = '/^' . (empty($_SERVER['HTTPS']) ? 'http' : 'https') . ':\/\/'. explode(".", $_SERVER['HTTP_HOST'])[0] .'\.' . explode(".", $_SERVER['HTTP_HOST'])[1] .'\/index\.php\?url=[a-zA-Z0-9]*$/';
+echo $url_shortened_pattern;
 $shortened_url = "";
 $analytics_text = "";
 
@@ -13,7 +16,7 @@ if (isset($_POST["url"])) {
         if (preg_match($url_shortened_pattern, $_POST["url"])) {
             $analytics_text = "The url has been created on " . date('l jS \of F Y h:i:s A', getURL(explode("=", $_POST["url"])[1])[2] ?? 0) . " UTC and in that time it has gotten " . (getURL(explode("=", $_POST["url"])[1])[3] ?? 0) . " visits";
         } else {
-            $shortened_url = "http://something.test/index.php?url=" . shortenURL($_POST["url"]);
+            $shortened_url = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://". $_SERVER['HTTP_HOST'] . "/index.php?url=" . shortenURL($_POST["url"]);
         }
     }
 }
