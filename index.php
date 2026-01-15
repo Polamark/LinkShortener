@@ -7,7 +7,6 @@ date_default_timezone_set("UTC");
 
 $url_pattern = "/^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$/";
 $url_shortened_pattern = $pattern = '/^' . (empty($_SERVER['HTTPS']) ? 'http' : 'https') . ':\/\/'. explode(".", $_SERVER['HTTP_HOST'])[0] .'\.' . explode(".", $_SERVER['HTTP_HOST'])[1] .'\/index\.php\?url=[a-zA-Z0-9]*$/';
-echo $url_shortened_pattern;
 $shortened_url = "";
 $analytics_text = "";
 
