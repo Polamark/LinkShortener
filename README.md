@@ -17,7 +17,8 @@ A lightweight URL shortening service built with PHP.
     * A local development environment (e.g. XAMPP, MAMP)
 
 3. Start your PHP server and access the project through your browser.
-4. Enjoy!
+4. You don't have to change anything the project will automatically configure the urls
+5. Enjoy!
 
 ## 🎨 Built With Tailwind CSS
 
