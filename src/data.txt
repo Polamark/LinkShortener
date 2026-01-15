@@ -1,0 +1,2 @@
+6968d605f3689 | https://www.w3schools.com/php/func_filesystem_ftruncate.asp | 1768478213 | 100000000000000000000
+6968d637500dd | https://www.w3schools.com/php/func_filesystem_ftruncate.asp | 1768478263 | 0
