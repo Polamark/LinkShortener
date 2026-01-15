@@ -38,7 +38,7 @@ if (isset($_GET["url"])) {
 <h1 class="text-white text-5xl">Link Shortener</h1>
 <form action="index.php" method="post" class="flex gap-3 bg-gray-950">
     <label for="url" class="hidden">URL/analytics accessor</label>
-    <input id="url" type="text" name="url" value="<?= $_POST['url']?>" placeholder="Enter URL or paste shortened URL to access statistics"
+    <input id="url" type="text" name="url" value="<?php if (isset($_POST['url'])) { echo $_POST['url'];}?>" placeholder="Enter URL or paste shortened URL to access statistics"
            class="text-lg w-150  text-white border-white px-3">
     <button type="submit" class="bg-orange-600 font-medium text-white w-50 text-3xl rounded-2xl py-1.5">Shorten</button>
 </form>
